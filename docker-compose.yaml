@@ -1,0 +1,19 @@
+services:
+
+  web:
+    image: umbot
+    ports:
+      - 8000:8000
+    environment:
+      PG_CONN: dbname=db user=user password=password host=db
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
